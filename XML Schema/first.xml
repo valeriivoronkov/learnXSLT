@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<element po>
+		<complexType>
+			<sequence>
+				<element ref="customer-id" />
+				<element ref="item-ordered" maxOccures="unbounded" />
+				<element ref="order-date" />
+				>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="customer-id" type="string">
+		<element name="item-ordered">
+			<complexType>
+				<attribute name="part-number" use="required">
+					<simpleType>
+						<restriction base="string">
+							<pattern value="[0-9]{5}(-[0-9]{4})?">
+							</pattern>
+						</restriction>
+					</simpleType>
+					<attribute name="quantity" use="required" type="integer" />
+					>
+				</attribute>
+			</complexType>
+		</element>
+		<element name="order-date">
+			<complexType>
+				<attribute name="day" use="required">
+					<simpleType>
+						<restriction base="positiveInteger">
+							<maxInclusive value="31">
+							</maxInclusive>
+						</restriction>
+					</simpleType>
+				</attribute>
+                <attribute name="month" use="required">
+					<simpleType>
+						<restriction base="positiveInteger">
+							<maxInclusive value="12">
+							</maxInclusive>
+						</restriction>
+					</simpleType>
+				</attribute>
+                <attribute name="year" use="required">
+					<simpleType>
+						<restriction base="gYear">
+							<maxInclusive value="2100">
+							</maxInclusive>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</complexType>
+		</element>
+	</element>
+</schema>
